@@ -1,0 +1,14 @@
+<h1>My Contacts</h1>
+<table>
+    <tr>
+        <th>Contacts</th>
+    </tr>
+    {% for Contact in contacts %}
+    <tr>
+        <td>{{Contact.fname}}</td>
+        <td><a href="{% url 'contactinfo' Contact.cid %}">View</a></td>
+    </tr>
+    {% empty %}
+      <h3>No Contacts</h3>
+    {% endfor %}
+</table>>
