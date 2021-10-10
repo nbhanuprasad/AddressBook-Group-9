@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from .models import ContactInfo
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 # Create your views here.
 #def home_view(request,*args, **kwargs):
     #return HttpResponse("<h1> Hello World</h1>")
@@ -13,4 +15,8 @@ class ContactList(ListView):
 class ContactDetail(DetailView):
     model= ContactInfo
     context_object_name= 'contactdetail'
-    
+
+class ContactCreate(CreateView):
+    model= ContactInfo
+    field = '__all__'
+    success_url= reverse_lazy('')
