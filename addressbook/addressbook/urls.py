@@ -21,11 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ContactList.as_view(),name='contacts'),
     path('contactcreate/',ContactCreate.as_view(),name='createcontact'),
-<<<<<<< HEAD
     path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
-=======
-    #path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
->>>>>>> 876d6433e989dd094055f5bdfe2cdf74c2191f5b
 
     #path('',views.home_view, name='home'),
 ]
