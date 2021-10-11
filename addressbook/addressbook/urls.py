@@ -19,7 +19,7 @@ from Contacts import views
 from Contacts.views import ContactList,ContactDetail,ContactCreate
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ContactList.as_view(),name='contacts'),
+    path('contactlist', ContactList.as_view(),name='contacts'),
     path('contactcreate/',ContactCreate.as_view(),name='createcontact'),
     path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
 

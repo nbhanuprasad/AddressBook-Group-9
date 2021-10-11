@@ -18,5 +18,5 @@ class ContactDetail(DetailView):
 
 class ContactCreate(CreateView):
     model= ContactInfo
-    field = '__all__'
-    success_url= reverse_lazy('')
+    fields = '__all__'
+    success_url= reverse_lazy('contacts')
