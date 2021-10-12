@@ -8,7 +8,8 @@
     <tr>
         <td>{{Contact.fname}}</td>
         <td><a href="{% url 'contactinfo' Contact.cid %}">View</a></td>
-        <td><a href="{% url 'contactinfo' Contact.cid %}">Edit</a></td>
+        <td><a href="{% url 'contactupdate' Contact.cid %}">Edit</a></td>
+        <td><a href="{% url 'contactdelete' Contact.cid %}">Delete</a></td>
     </tr>
     {% empty %}
       <h3>No Contacts</h3>
