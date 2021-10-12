@@ -1,3 +1,4 @@
+<p>{{request.user}}</p>
 <h1>My Contacts</h1>
 <a href="{% url 'createcontact' %}">Add Contact</a>
 <table>
@@ -6,7 +7,7 @@
     </tr>
     {% for Contact in contacts %}
     <tr>
-        <td>{{Contact.fname}}</td>
+        <td>{{Contact.fname}} {{Contact.lname}}</td>
         <td><a href="{% url 'contactinfo' Contact.cid %}">View</a></td>
         <td><a href="{% url 'contactupdate' Contact.cid %}">Edit</a></td>
         <td><a href="{% url 'contactdelete' Contact.cid %}">Delete</a></td>

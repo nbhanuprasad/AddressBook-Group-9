@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from Contacts import views
 from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate,ContactDelete
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contactlist', ContactList.as_view(),name='contacts'),
@@ -25,4 +28,5 @@ urlpatterns = [
     path('contactupdate/<int:pk>/', ContactUpdate.as_view(),name='contactupdate'),
     path('contactdelete/<int:pk>/', ContactDelete.as_view(),name='contactdelete')
     #path('',views.home_view, name='home'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()

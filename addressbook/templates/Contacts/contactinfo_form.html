@@ -2,8 +2,12 @@
 <form action="{% url 'contacts' %}">
     <input type="submit" value="Go Back" />
 </form>
-<form method="POST" action="">
+<img src='{{ contact.photo.url }}' width="250" height="250" />
+<form method="POST" action="" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
   <input type="submit" value="Submit">
+</form>
+<form action="{% contact.photo.delete %}" method=POST enctype="multipart/form-data">
+  <input type="submit" value="Delete Image" />
 </form>

@@ -5,6 +5,7 @@ from .models import ContactInfo
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+import os.path
 # Create your views here.
 #def home_view(request,*args, **kwargs):
     #return HttpResponse("<h1> Hello World</h1>")
@@ -23,6 +24,7 @@ class ContactCreate(CreateView):
 class ContactUpdate(UpdateView):
     model= ContactInfo
     fields = '__all__'
+    context_object_name='contact'
     success_url= reverse_lazy('contacts')
 class ContactDelete(DeleteView):
     model=ContactInfo
