@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Contacts import views
-from Contacts.views import ContactList,ContactDetail,ContactCreate
+from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contactlist', ContactList.as_view(),name='contacts'),
     path('contactcreate/',ContactCreate.as_view(),name='createcontact'),
     path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
-
+    path('contactupdate/<int:pk>/', ContactUpdate.as_view(),name='contactupdate')
     #path('',views.home_view, name='home'),
 ]
