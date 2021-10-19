@@ -2,6 +2,7 @@
 <form action="{% url 'contacts' %}">
     <input type="submit" value="Go Back" />
 </form>
+<img src='{{ contact.photo.url }}' width="250" height="250" />
 {% if contact.photo %}
 <img src='{{ contact.photo.url }}' width="250" height="250" />
 {% else %}
@@ -10,7 +11,4 @@
   {% csrf_token %}
   {{form.as_p}}
   <input type="submit" value="Submit">
-</form>
-<form action="{% contact.photo.delete %}" method="POST">
-    <input id="submit" type="button" value="Click" />
 </form>
