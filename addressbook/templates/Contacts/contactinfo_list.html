@@ -1,4 +1,9 @@
-<p>{{request.user}}</p>
+{% if request.user.is_authenticated %}
+  <p>{{request.user}}</p>
+  <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+{% endif %}
 <h1>My Contacts</h1>
 <a href="{% url 'createcontact' %}">Add Contact</a>
 <table>

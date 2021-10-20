@@ -16,17 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Contacts import views
-from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate,ContactDelete
+from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate,ContactDelete,CustomLoginView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contactlist', ContactList.as_view(),name='contacts'),
     path('contactcreate/',ContactCreate.as_view(),name='createcontact'),
     path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
     path('contactupdate/<int:pk>/', ContactUpdate.as_view(),name='contactupdate'),
-    path('contactdelete/<int:pk>/', ContactDelete.as_view(),name='contactdelete')
+    path('contactdelete/<int:pk>/', ContactDelete.as_view(),name='contactdelete'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout')
     #path('',views.home_view, name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
