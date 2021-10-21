@@ -4,7 +4,8 @@
 {% else %}
   <a href="{% url 'login' %}">Login</a>
 {% endif %}
-<h1>My Contacts</h1>
+<h1>My Contacts </h1>
+<h1>Total Contacts: {{count}}</h1>
 <a href="{% url 'createcontact' %}">Add Contact</a>
 <table>
     <tr>
