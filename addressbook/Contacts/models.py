@@ -244,19 +244,19 @@ COUNTRIES = (
     ('ZZ', ('Unknown or unspecified country')),
 )
 class ContactInfo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     cid = models.AutoField(primary_key=True)
     photo = models.ImageField(upload_to='', default="default.png")
-    fname = models.CharField(max_length=50, null=True, blank=True)
-    lname = models.CharField(max_length=50, null=True, blank=True)
-    DOB = models.DateField(null=True)
-    phnumber = PhoneNumberField(null = True, blank = True)
-    phnumberalt= PhoneNumberField(null = True, blank = True)
-    Staddress= models.TextField(null=True, blank=True)
-    city = models.CharField(max_length=20, null=True)
-    state = models.CharField(max_length=20, null=True)
-    zipcode = models.IntegerField(max_length=7, null=True)
-    country = models.CharField(max_length=20, choices= COUNTRIES, default='ZZ')
+    fname = models.CharField(max_length=50, null=True, blank=True, verbose_name="First Name")
+    lname = models.CharField(max_length=50, null=True, blank=True, verbose_name="Last Name")
+    DOB = models.DateField(null=True,blank=True, verbose_name="Date Of Birth")
+    phnumber = PhoneNumberField(null = True, blank = True, verbose_name="Primary Phone Number")
+    phnumberalt= PhoneNumberField(null = True, blank = True, verbose_name="Alternate Phone Number")
+    Staddress= models.TextField(null=True, blank=True, verbose_name="Street Address")
+    city = models.CharField(max_length=20, null=True, verbose_name="City")
+    state = models.CharField(max_length=20, null=True, verbose_name="State")
+    zipcode = models.PositiveIntegerField(null=True,blank=True, verbose_name="Zipcode")
+    country = models.CharField(max_length=20, choices= COUNTRIES, default='ZZ', verbose_name="Country",null=True, blank=True)
 
     def __str__(self):
         return self.fname
