@@ -7,6 +7,10 @@
 <h1>My Contacts </h1>
 <h1>Total Contacts: {{count}}</h1>
 <a href="{% url 'createcontact' %}">Add Contact</a>
+<form method="GET">
+  <input type="text" name="search-area" value={{search_input}}>
+  <input type="submit" name="" value="Search">
+</form>
 <table>
     <tr>
         <th>Contacts</th>

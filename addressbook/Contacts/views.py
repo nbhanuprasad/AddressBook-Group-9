@@ -45,6 +45,12 @@ class ContactList(LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         context['contacts']= context['contacts'].filter(user=self.request.user)
         context['count']=context['contacts'].count()
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            fna=context['contacts'].filter(fname__icontains=search_input)
+            lna=context['contacts'].filter(lname__icontains=search_input)
+            phn=context['contacts'].filter(phnumber__icontains=search_input)
+            context['contacts'] = fna | lna | phn
         return context
 class ContactDetail(LoginRequiredMixin,DetailView):
     model= ContactInfo
