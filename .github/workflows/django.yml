@@ -28,5 +28,5 @@ jobs:
         pip install pillow
     - name: Run Tests
       run: |
-        cd addrssbook
+        cd addressbook
         python manage.py test
