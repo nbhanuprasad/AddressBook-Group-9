@@ -73,3 +73,12 @@ class ContactDelete(LoginRequiredMixin,DeleteView):
     model=ContactInfo
     context_object_name='delcontact'
     success_url= reverse_lazy('contacts')
+
+def DeleteImage(request, pk):
+    model = ContactInfo
+    cont = ContactInfo.objects.get(cid=pk)
+    if cont.photo!='default.png':
+        os.remove(cont.photo.path)
+        cont.photo = 'default.png'
+        cont.save()
+    return HttpResponse("Image has been deleted and set to Default")

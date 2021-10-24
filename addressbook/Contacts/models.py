@@ -260,4 +260,7 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return self.fname
+    def delete(self, using=None, Keep_parents=False):
+        self.photo.storage.delete(self.photo.name)
+        super().delete()
 # Create your models here.

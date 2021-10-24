@@ -3,9 +3,10 @@
 {% csrf_token %}
 {% if contactdetail.photo %}
 <img src='{{ contactdetail.photo.url }}' width="250" height="250" />
+
 {% else %}
 <p>No Image Data Available</p>{% endif %}
-<input type="button" value=" Reset Image " onclick={{ contactdetail.image}}>
+<p>photo path :::: {{contactdetail.photo.url}}</p>
 <p>First Name: {{contactdetail.fname}}</p>
 <p>Last Name: {{contactdetail.lname}}</p>
 <p>Date of Birth: {{contactdetail.DOB}}</p>
