@@ -8,5 +8,5 @@ Featurers of site include:
 3) Edit a contact : Open the contact card and edit the details using a form.
 4) Search contact by name : The user can search his contacts using name.
 5) Add a picture to the contact : Add a picture to the contact card.
-6) Export the contacts of the user to a CSV file. : This is an advanced feature where user can insert preferred image to the contact card.
+6) Export the contacts of the user to a CSV file. : This is an advanced feature
 The site uses Sqlite database to store the data and retreive.
