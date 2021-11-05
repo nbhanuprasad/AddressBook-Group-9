@@ -2,14 +2,15 @@
 <form action="{% url 'contacts' %}">
     <input type="submit" value="Go Back" />
 </form>
-{% if contact.photo.name != 'default.png' %}
+{% if contact.cid %}
+{% if contact.photo.name != 'default.png'  %}
 <img src='{{ contact.photo.url }}' width="250" height="250" />
 
 <form action="{% url 'imgdelete' contact.cid %}">
     <input type="submit" value="Delete Image" /> <p>Caution: Image will be delete on click</p>
 </form>
 {% else %}
-<p>User can add custom Image</p>{% endif %}
+<p>User can add custom Image</p>{% endif %}{% endif %}
 <form method="POST" action="" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
