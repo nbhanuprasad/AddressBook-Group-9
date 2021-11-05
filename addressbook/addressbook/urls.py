@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Contacts import views
-from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate,ContactDelete,CustomLoginView, RegisterPage, DeleteImage
+from Contacts.views import ContactList,ContactDetail,ContactCreate,ContactUpdate,ContactDelete,CustomLoginView, RegisterPage, DeleteImage,ContactCSV
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -31,7 +31,8 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('register/', RegisterPage.as_view(), name='register'),
-    path('imgdel/<int:pk>',views.DeleteImage, name='imgdelete'  )
+    path('imgdel/<int:pk>',views.DeleteImage, name='imgdelete'  ),
+    path('export',views.ContactCSV,name='contactcsv')
     #path('',views.home_view, name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

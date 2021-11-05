@@ -9,6 +9,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+import csv
 import os.path
 # Create your views here.
 #def home_view(request,*args, **kwargs):
@@ -58,7 +59,7 @@ class ContactDetail(LoginRequiredMixin,DetailView):
 
 class ContactCreate(LoginRequiredMixin,CreateView):
     model= ContactInfo
-    fields = ['photo','fname','lname','DOB','phnumber','phnumberalt','Staddress','city','state','zipcode','country']
+    fields = ['photo','fname','lname','DOB','phnumber','phnumberalt','email_address','Staddress','city','state','zipcode','country']
     success_url= reverse_lazy('contacts')
 
     def form_valid(self,form):
@@ -67,7 +68,7 @@ class ContactCreate(LoginRequiredMixin,CreateView):
 
 class ContactUpdate(LoginRequiredMixin,UpdateView):
     model= ContactInfo
-    fields = ['photo','fname','lname','DOB','phnumber','phnumberalt','Staddress','city','state','zipcode','country']
+    fields = ['photo','fname','lname','DOB','phnumber','phnumberalt','email_address','Staddress','city','state','zipcode','country']
     context_object_name='contact'
     success_url= reverse_lazy('contacts')
 
@@ -88,3 +89,13 @@ def DeleteImage(request, pk):
         cont.photo = 'default.png'
         cont.save()
     return HttpResponse("Image has been deleted and set to Default")
+
+def ContactCSV(request):
+    response=HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attatchment; filename=Contacts.csv'
+    writer = csv.writer(response)
+    contacts=ContactInfo.objects.filter(user=request.user)
+    writer.writerow(['First Name','Last Name','Date of Birth','Phone Number','Alternate Phone Number','Email ID','Street Address','City','State','Zipcode','Country'])
+    for contact in contacts:
+        writer.writerow([contact.fname,contact.lname,contact.DOB,contact.phnumber,contact.phnumberalt,contact.email_address,contact.Staddress,contact.city,contact.state,contact.zipcode,contact.get_country_display()])
+    return response

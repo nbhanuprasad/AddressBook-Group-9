@@ -252,6 +252,7 @@ class ContactInfo(models.Model):
     DOB = models.DateField(null=True,blank=True, verbose_name="Date Of Birth")
     phnumber = PhoneNumberField(null = True, blank = True, verbose_name="Primary Phone Number")
     phnumberalt= PhoneNumberField(null = True, blank = True, verbose_name="Alternate Phone Number")
+    email_address=models.EmailField(null=True,blank=True,verbose_name="Email ID")
     Staddress= models.TextField(null=True, blank=True, verbose_name="Street Address")
     city = models.CharField(max_length=20, null=True, verbose_name="City")
     state = models.CharField(max_length=20, null=True, verbose_name="State")
@@ -260,7 +261,4 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return self.fname
-    def delete(self, using=None, Keep_parents=False):
-        self.photo.storage.delete(self.photo.name)
-        super().delete()
 # Create your models here.
