@@ -10,11 +10,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 import csv
+from django.conf.urls.static import static
 import os.path
 # Create your views here.
 #def home_view(request,*args, **kwargs):
     #return HttpResponse("<h1> Hello World</h1>")
 #    return render(request, "login.html", {})
+def home_view(request):
+    redirect_authenticated_user=True
+    return render(request, 'home.html')
+
+
 class CustomLoginView(LoginView):
     template_name='login.html'
     field='__all__'

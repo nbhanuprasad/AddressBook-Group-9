@@ -23,6 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.home_view, name='Homepage'),
     path('contactlist', ContactList.as_view(),name='contacts'),
     path('contactcreate/',ContactCreate.as_view(),name='createcontact'),
     path('contactinfo/<int:pk>/', ContactDetail.as_view(),name='contactinfo'),
