@@ -1,17 +1,48 @@
-{% if request.user.is_authenticated %}
-  <p>{{request.user}}</p>
-  <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-  <a href="{% url 'login' %}">Login</a>
-{% endif %}
-<h1>My Contacts </h1>
-<h1>Total Contacts: {{count}}</h1>
-<a href="{% url 'createcontact' %}">Add Contact</a>
-<a href="{% url 'contactcsv' %}">Export Data</a>
-<form method="GET">
-  <input type="text" name="search-area" value={{search_input}}>
-  <input type="submit" name="" value="Search">
-</form>
+{% extends 'Contacts/main.html' %}
+{% block content%}
+
+<div class="header-bar">
+  <div>
+      <h1>Hello, {{request.user}}!</h1>
+      <h5 style="margin:0"> You have <i>{{count}}</i> contact{{count|pluralize:"s"}} in your address book </h5>
+  </div>
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'contactcsv' %}">Export Data</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <a href="{% url 'login' %}">Login</a>
+  {% endif %}
+</div>
+<div id="search-add-wrapper">
+  <form method="GET" style="margin-top: 20px; display: flex;">
+    <input type="text" name="search-area" value={{search_input}}>
+    <input class="button" type="submit" name="" value="Search">
+  </form>
+  <div>
+  <a id="add-link" href="{% url 'createcontact' %}">&#x2b</a>
+</div>
+</div>
+
+<div class="contact-items-wrapper">
+  {% for Contact in contacts %}
+  <div class="contact-wrapper">
+    <div class="contact-name">
+      <a href="{% url 'contactinfo' Contact.cid %}"><strong>{{Contact.fname}} {{Contact.lname|default_if_none:"&nbsp;"}}</strong></a>
+      {% if Contact.phnumber %}
+        <p><a href="tel:{{Contact.phnumber|default_if_none:"&nbsp;"}}">&#9743; {{Contact.phnumber|default_if_none:"&nbsp;"}}</a></p>
+      {% endif %}
+
+    </div>
+    <div>
+    <a class="button" href="{% url 'contactupdate' Contact.cid %}">&#9998</a>
+    <a class="button" href="{% url 'contactdelete' Contact.cid %}">&#9747</a>
+    </div>
+  </div>
+  {% empty %}
+  <h3>No Contacts</h3>
+  {% endfor %}
+</div>
+<!--
 <table>
     <tr>
         <th>Contacts</th>
@@ -26,4 +57,6 @@
     {% empty %}
       <h3>No Contacts</h3>
     {% endfor %}
-</table>>
+</table>
+-->
+{%endblock content%}

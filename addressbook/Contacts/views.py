@@ -31,6 +31,7 @@ class CustomLoginView(LoginView):
 class RegisterPage(FormView):
     template_name='register.html'
     form_class = UserCreationForm
+    fields = '__all__'
     redirect_authenticated_user=True
     success_url=reverse_lazy('contacts')
 

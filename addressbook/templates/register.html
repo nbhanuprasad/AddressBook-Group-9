@@ -1,8 +1,15 @@
+{% extends 'Contacts/main.html' %}
+{% block content%}
+<div class="header-bar">
 <h1>Register</h1>
+</div>
+<div class="card-body">
 <form method="post">
   {% csrf_token %}
   {{form.as_p}}
-  <input type="submit" value="Register">
+  <input class='button' type="submit" value="Register">
 </form>
 
-<p>Already have an account? <a href="login">Login</a></p>
+<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock content%}

@@ -1,25 +1,29 @@
+{% extends 'Contacts/main.html' %}
+{% block content%}
 {% load static %}
-<h1>Contact Information</h1>
-{% csrf_token %}
-{% if contactdetail.photo %}
-<img src='{{ contactdetail.photo.url }}' width="250" height="250" />
+<div class="header-bar">
+  <h1>Contact Information</h1>
+  {% csrf_token %}
+  {% if contactdetail.photo %}
+  <img src='{{ contactdetail.photo.url }}' width="75" height="75" />
 
-{% else %}
-<p>No Image Data Available</p>{% endif %}
-<p>photo path :::: {{contactdetail.photo.url}}</p>
-<p>First Name: {{contactdetail.fname}}</p>
-<p>Last Name: {{contactdetail.lname}}</p>
-<p>Date of Birth: {{contactdetail.DOB}}</p>
-<p>Phone Number: {{contactdetail.phnumber.as_e164}}</p>
-<p>Alternate Phone Number: {{contactdetail.phnumberalt.as_e164}}</p>
-<p>Email: {{contactdetail.email_address}}</p>
-<p>Street Address: {{contactdetail.Staddress}}</p>
-<p>City: {{contactdetail.city}}</p>
-<p>State: {{contactdetail.state}}</p>
-<p>ZipCode: {{contactdetail.zipcode}}</p>
-<p>Country: {{contactdetail.get_country_display}}</p>
-<form action="{% url 'contacts' %}">
-    <input type="submit" value="Go Back" />
-</form>
-<a href="{% url 'contactupdate' contactdetail.cid %}">Edit</a>
-<a href="{% url 'contactdelete' contactdetail.cid %}">Delete</a>
+  {% else %}
+  <p>No Image Data Available</p>{% endif %}
+</div>
+<div class="card-body">
+<p>            First Name:  {{contactdetail.fname}}</p>
+<p>             Last Name:  {{contactdetail.lname}}</p>
+<p>         Date of Birth:  {{contactdetail.DOB}}</p>
+<p>          Phone Number:  <a href="tel:{{contactdetail.phnumber.as_e164|default_if_none:"&nbsp;"}}"> {{contactdetail.phnumber.as_e164|default_if_none:"&nbsp;"}}</a></p>
+<p>Alternate Phone Number:  <a href="tel:{{contactdetail.phnumberalt.as_e164|default_if_none:"&nbsp;"}}"> {{contactdetail.phnumberalt.as_e164|default_if_none:"&nbsp;"}}</a></p>
+<p>                 Email:  {{contactdetail.email_address}}</p>
+<p>        Street Address:  {{contactdetail.Staddress}}</p>
+<p>                  City:  {{contactdetail.city}}</p>
+<p>                 State:  {{contactdetail.state}}</p>
+<p>               ZipCode:  {{contactdetail.zipcode}}</p>
+<p>               Country:  {{contactdetail.get_country_display}}</p>
+<a class='button' href="{% url 'contacts' %}"> &#8592; Go Back</a>
+<a class='button' href="{% url 'contactupdate' contactdetail.cid %}">&#9998</a>
+<a class='button' href="{% url 'contactdelete' contactdetail.cid %}">&#9747</a>
+</div>
+{% endblock content %}

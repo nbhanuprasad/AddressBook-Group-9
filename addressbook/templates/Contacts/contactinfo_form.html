@@ -1,7 +1,10 @@
-<h3>Task Form</h3>
-<form action="{% url 'contacts' %}">
-    <input type="submit" value="Go Back" />
-</form>
+{% extends 'Contacts/main.html' %}
+{% block content%}
+<div class="header-bar">
+  <a href="{% url 'contacts' %}"> &#8592; Back</a>
+
+</div>
+<div class="card-body">
 {% if contact.cid %}
 {% if contact.photo.name != 'default.png'  %}
 <img src='{{ contact.photo.url }}' width="250" height="250" />
@@ -13,8 +16,13 @@
 <p>User can add custom Image</p>
 {% endif %}
 {% endif %}
+
 <form method="POST" action="" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
-  <input type="submit" value="Submit">
+  <div class="header-bar">
+  <input class="button" type="submit" value="Submit">
+  </div>
 </form>
+</div>
+{% endblock content %}
